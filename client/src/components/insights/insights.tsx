@@ -29,7 +29,8 @@ export const Insights = ({ insights, className, onDelete }: InsightsProps) => {
                     <span>{date.toString()}</span>
                     <Trash2Icon
                       className={styles["insight-delete"]}
-                      onClick={() => handleDelete(id)}
+                      onClick={() =>
+                        handleDelete(id)}
                     />
                   </div>
                 </div>

@@ -7,7 +7,11 @@ describe("deleting an insight from the database", () => {
   withDB((fixture) => {
     beforeAll(() => {
       fixture.insights.insert([
-        { brand: 1, createdAt: new Date().toISOString(), text: "Insight to delete" },
+        {
+          brand: 1,
+          createdAt: new Date().toISOString(),
+          text: "Insight to delete",
+        },
       ]);
       const [row] = fixture.insights.selectAll();
       deleteInsight({ ...fixture, id: row.id });
