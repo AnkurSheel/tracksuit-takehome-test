@@ -3,6 +3,7 @@ import { Database } from "@db/sqlite";
 import * as oak from "@oak/oak";
 import * as path from "@std/path";
 import { Port } from "../lib/utils/index.ts";
+import createInsight from "./operations/create-insight.ts";
 import listInsights from "./operations/list-insights.ts";
 import lookupInsight from "./operations/lookup-insight.ts";
 
@@ -41,8 +42,10 @@ router.get("/insights/:id", (ctx) => {
   ctx.response.status = 200;
 });
 
-router.get("/insights/create", (ctx) => {
-  // TODO
+router.post("/insights/create", async (ctx) => {
+  const body = await ctx.request.body.json();
+  createInsight({ db, ...body });
+  ctx.response.status = 201;
 });
 
 router.get("/insights/delete", (ctx) => {
