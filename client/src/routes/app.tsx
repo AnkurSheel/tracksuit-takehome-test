@@ -12,12 +12,19 @@ export const App = () => {
       .then((res) => res.json())
       .then((data) =>
         setInsights(
-          data.map((item: { id: number; brand: number; createdAt: string; text: string }) => ({
+          data.map((
+            item: {
+              id: number;
+              brand: number;
+              createdAt: string;
+              text: string;
+            },
+          ) => ({
             id: item.id,
             brandId: item.brand,
             date: new Date(item.createdAt),
             text: item.text,
-          }))
+          })),
         )
       );
   };
