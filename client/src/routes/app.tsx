@@ -36,7 +36,11 @@ export const App = () => {
   return (
     <main className={styles.main}>
       <Header onAdd={fetchInsights} />
-      <Insights className={styles.insights} insights={insights} />
+      <Insights
+        className={styles.insights}
+        insights={insights}
+        onDelete={fetchInsights}
+      />
     </main>
   );
 };
