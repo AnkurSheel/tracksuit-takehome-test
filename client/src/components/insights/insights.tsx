@@ -6,10 +6,14 @@ import type { Insight } from "../../schemas/insight.ts";
 type InsightsProps = {
   insights: Insight[];
   className?: string;
+  onDelete?: () => void;
 };
 
-export const Insights = ({ insights, className }: InsightsProps) => {
-  const deleteInsight = () => undefined;
+export const Insights = ({ insights, className, onDelete }: InsightsProps) => {
+  const handleDelete = async (id: number) => {
+    await fetch(`/api/insights/${id}`, { method: "DELETE" });
+    onDelete?.();
+  };
 
   return (
     <div className={cx(className)}>
@@ -25,7 +29,7 @@ export const Insights = ({ insights, className }: InsightsProps) => {
                     <span>{date.toString()}</span>
                     <Trash2Icon
                       className={styles["insight-delete"]}
-                      onClick={deleteInsight}
+                      onClick={() => handleDelete(id)}
                     />
                   </div>
                 </div>
